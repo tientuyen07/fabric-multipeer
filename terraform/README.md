@@ -14,17 +14,17 @@ ssh ubuntu@'hostnameofAWSEC2instance'
 cd fabric-dev-servers-multipeer
 ```
 
-On the machine 'ubuntu@192.168.1.222' run:
+On the machine 'ubuntu@10.142.0.2' run:
 ```
 ./startFabric.sh
 ```
 
-On the machine 'ubuntu@192.168.1.224' run:
+On the machine 'ubuntu@10.142.0.3' run:
 ```
 ./startFabric-Peer2.sh
 ```
 
-On the machine 'ubuntu@192.168.1.222' run:
+On the machine 'ubuntu@10.142.0.2' run:
 ```
 ./createPeerAdminCard.sh
 nohup composer-playground -p 8181 &
@@ -53,7 +53,7 @@ You will find composer at the Hostname of the instance you ran composer playgrou
 
 To run the Composer REST API:
 ```
-npm install -g composer-rest-server@0.16.6
+npm install -g composer-rest-server@0.19.17
 composer-rest-server
 
 ? Enter the name of the business network card to use: alice@trade-network

@@ -90,13 +90,13 @@ cat << EOF > org1connection.json
             "eventURL": "grpc://localhost:9053",
             "hostnameOverride": "peer2.org1.example.com"
         }, {
-            "requestURL": "grpc://192.168.0.224:10051",
+            "requestURL": "grpc://10.142.0.3:10051",
             "hostnameOverride": "peer0.org2.example.com"
         }, {
-            "requestURL": "grpc://192.168.0.224:11051",
+            "requestURL": "grpc://10.142.0.3:11051",
             "hostnameOverride": "peer1.org2.example.com"
         }, {
-            "requestURL": "grpc://192.168.0.224:12051",
+            "requestURL": "grpc://10.142.0.3:12051",
             "hostnameOverride": "peer2.org2.example.com"
         }
     ],
@@ -136,23 +136,23 @@ cat << EOF > org2onlyconnection.json
         }
     ],
     "ca": {
-        "url": "http://192.168.0.224:7054",
+        "url": "http://10.142.0.3:7054",
         "name": "ca.org2.example.com",
         "hostnameOverride": "ca.org2.example.com"
     },
     "peers": [
         {
-            "requestURL": "grpc://192.168.0.224:10051",
-            "eventURL": "grpc://192.168.0.224:10053",
+            "requestURL": "grpc://10.142.0.3:10051",
+            "eventURL": "grpc://10.142.0.3:10053",
             "hostnameOverride": "peer0.org2.example.com"
         }, {
-            "requestURL": "grpc://192.168.0.224:11051",
-            "eventURL": "grpc://192.168.0.224:11053",
+            "requestURL": "grpc://10.142.0.3:11051",
+            "eventURL": "grpc://10.142.0.3:11053",
             "hostnameOverride": "peer1.org2.example.com"
 
         }, {
-            "requestURL": "grpc://192.168.0.224:12051",
-            "eventURL": "grpc://192.168.0.224:12053",
+            "requestURL": "grpc://10.142.0.3:12051",
+            "eventURL": "grpc://10.142.0.3:12053",
             "hostnameOverride": "peer2.org2.example.com"
         }
     ],
@@ -173,7 +173,7 @@ cat << EOF > org2connection.json
         }
     ],
     "ca": {
-        "url": "http://192.168.0.224:7054",
+        "url": "http://10.142.0.3:7054",
         "name": "ca.org2.example.com",
         "hostnameOverride": "ca.org2.example.com"
     },
@@ -188,16 +188,16 @@ cat << EOF > org2connection.json
             "requestURL": "grpc://localhost:9051",
             "hostnameOverride": "peer2.org1.example.com"
         }, {
-            "requestURL": "grpc://192.168.0.224:10051",
-            "eventURL": "grpc://192.168.0.224:10053",
+            "requestURL": "grpc://10.142.0.3:10051",
+            "eventURL": "grpc://10.142.0.3:10053",
             "hostnameOverride": "peer0.org2.example.com"
         }, {
-            "requestURL": "grpc://192.168.0.224:11051",
-            "eventURL": "grpc://192.168.0.224:11053",
+            "requestURL": "grpc://10.142.0.3:11051",
+            "eventURL": "grpc://10.142.0.3:11053",
             "hostnameOverride": "peer1.org2.example.com"
         }, {
-            "requestURL": "grpc://192.168.0.224:12051",
-            "eventURL": "grpc://192.168.0.224:12053",
+            "requestURL": "grpc://10.142.0.3:12051",
+            "eventURL": "grpc://10.142.0.3:12053",
             "hostnameOverride": "peer2.org2.example.com"
         }
     ],
@@ -230,12 +230,12 @@ rm -rf org2onlyconnection.json
 echo "Hyperledger Composer PeerAdmin card has been imported"
 composer card list
 
-composer runtime install -c PeerAdmin@byfn-network-org1-only -n trade-network
-composer runtime install -c PeerAdmin@byfn-network-org2-only -n trade-network
+composer runtime install -c PeerAdmin@byfn-network-org1-only -n ehr
+composer runtime install -c PeerAdmin@byfn-network-org2-only -n ehr
 composer identity request -c PeerAdmin@byfn-network-org1-only -u admin -s adminpw -d alice
 composer identity request -c PeerAdmin@byfn-network-org2-only -u admin -s adminpw -d bob
-composer network start -c PeerAdmin@byfn-network-org1 -a trade-network.bna -o endorsementPolicyFile=endorsement-policy.json -A alice -C alice/admin-pub.pem -A bob -C bob/admin-pub.pem
-composer card create -p org1connection.json -u alice -n trade-network -c alice/admin-pub.pem -k alice/admin-priv.pem
-composer card import -f alice@trade-network.card
-composer card create -p org2connection.json -u bob -n trade-network -c bob/admin-pub.pem -k bob/admin-priv.pem
-composer card import -f bob@trade-network.card
+composer network start -c PeerAdmin@byfn-network-org1 -a ehr@0.0.1.bna -o endorsementPolicyFile=endorsement-policy.json -A alice -C alice/admin-pub.pem -A bob -C bob/admin-pub.pem
+composer card create -p org1connection.json -u alice -n ehr -c alice/admin-pub.pem -k alice/admin-priv.pem
+composer card import -f alice@ehr.card
+composer card create -p org2connection.json -u bob -n ehr -c bob/admin-pub.pem -k bob/admin-priv.pem
+composer card import -f bob@ehr.card

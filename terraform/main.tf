@@ -4,8 +4,8 @@ provider "aws" {
 
 variable "instance_ips" {
   default = {
-    "0" = "192.168.1.222"
-    "1" = "192.168.1.224"
+    "0" = "10.142.0.2"
+    "1" = "10.142.0.3"
   }
 }
 
@@ -30,7 +30,7 @@ resource "aws_instance" "fabric" {
 }
 
 resource "aws_vpc" "fabric-vpc" {
-  cidr_block           = "192.168.0.0/16"
+  cidr_block           = "10.142.0.0/16"
   enable_dns_support   = true
   enable_dns_hostnames = true
 }
@@ -47,7 +47,7 @@ resource "aws_route" "internet_access" {
 
 resource "aws_subnet" "fabric-subnet" {
   vpc_id                  = "${aws_vpc.fabric-vpc.id}"
-  cidr_block              = "192.168.1.0/24"
+  cidr_block              = "10.142.1.0/24"
   map_public_ip_on_launch = true
   availability_zone       = "us-east-1a"
 }
@@ -61,7 +61,7 @@ resource "aws_security_group" "allow_http" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["192.168.1.0/24"]
+    cidr_blocks = ["10.142.1.0/24"]
   }
 
   ingress {

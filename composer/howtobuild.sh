@@ -1,7 +1,7 @@
 cd "$(dirname "$0")"
 
-HOST1="192.168.0.118"
-HOST2="192.168.0.224"
+HOST1="10.142.0.2"
+HOST2="10.142.0.3"
 
 sed -i -e "s/{IP-HOST-1}/$HOST1/g" configtx.yaml
 sed -i -e "s/{IP-HOST-1}/$HOST1/g" ../startFabric-Peer2.sh

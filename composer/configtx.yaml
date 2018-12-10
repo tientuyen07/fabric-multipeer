@@ -115,7 +115,7 @@ Orderer: &OrdererDefaults
 
     Addresses:
         # - orderer.example.com:7050
-        - 192.168.0.118:7050
+        - 10.142.0.2:7050
 
     # Batch Timeout: The amount of time to wait before creating a batch
     BatchTimeout: 2s
