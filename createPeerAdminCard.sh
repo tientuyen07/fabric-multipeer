@@ -109,8 +109,8 @@ EOF
 PRIVATE_KEY="${DIR}"/composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/"${ORG1KEY}"
 CERT="${DIR}"/composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem
 
-if composer card list -n @byfn-network-org1-only > /dev/null; then
-    composer card delete -n @byfn-network-org1-only
+if composer card list --card PeerAdmin@byfn-network-org1-only > /dev/null; then
+    composer card delete --card PeerAdmin@byfn-network-org1-only
 fi
 
 if composer card list -n @byfn-network-org1 > /dev/null; then
